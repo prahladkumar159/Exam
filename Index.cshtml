@@ -1,0 +1,96 @@
+﻿@model IEnumerable<OnlineExam.Models.mcqQS>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.course)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.qsId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.qsNo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.qs)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.op1)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.op2)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.op3)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.op4)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ans)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.tag)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.eTime)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.course)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.qsId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.qsNo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.qs)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.op1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.op2)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.op3)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.op4)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ans)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.tag)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.eTime)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
