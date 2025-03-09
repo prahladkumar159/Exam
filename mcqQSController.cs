@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using OnlineExam.Data;
 using OnlineExam.Models;
 using Microsoft.AspNetCore.Http;
+using Newtonsoft.Json;
 
 
 namespace OnlineExam.Controllers
@@ -52,12 +53,13 @@ namespace OnlineExam.Controllers
                 ids = 1;
             }
 
-            var mcqQS = await _context.mcqQS
-                .FirstOrDefaultAsync(m => m.id == ids);
-            mcqQS.ans = "1";
+            var mcqQS = await _context.mcqQS.FirstOrDefaultAsync(m => m.id == ids);
+
             if (mcqQS != null)
             {
-                HttpContext.Session.SetString(SessionName, mcqQS);
+                string serializedModel = JsonConvert.SerializeObject(mcqQS);
+
+                HttpContext.Session.SetString("model", serializedModel);
             }
             if (mcqQS == null)
             {
@@ -70,6 +72,7 @@ namespace OnlineExam.Controllers
         public IActionResult Next(mcqQS mcqQS)
         {
             var id=Convert.ToInt32(TempData["id"])+1;
+           var m= HttpContext.Session.GetString("model");
             return RedirectToAction("Exam",new { ids = id });
         }
         public IActionResult Previous()
